@@ -138,6 +138,7 @@
       err.classList.toggle('show', !valid);
       input.setAttribute('aria-invalid', String(!valid));
       if (!valid) { $('#track-result').hidden = true; return; }
+      // TODO: look the reference up on the backend instead of showing an example status.
       var last = store.get('paychi:last');
       $('#t-out-ref').textContent = ref;
       $('#t-out-what').textContent = last && last.ref === ref ? last.what : 'Example request';
