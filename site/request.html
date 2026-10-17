@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Submit a request — Paychi</title>
+  <meta name="description" content="Send Paychi a payment link, invoice, or purchase link for review.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body class="page-request">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="demo-bar">Demo site: requests and tracking aren’t connected yet, so nothing you enter is sent.</div>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Paychi home"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#2563EB"/><path d="M11 23V9h6.2a4.6 4.6 0 0 1 0 9.2H11" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Paychi</span></a>
+      <nav class="nav" id="site-nav" aria-label="Main"><a href="services.html">Services</a><a href="how-it-works.html">How it works</a><a href="faq.html">FAQ</a><a href="track.html">Track a request</a>
+        <a class="btn btn-primary btn-sm nav-cta-mobile" href="request.html">Submit a request</a>
+      </nav>
+      <a class="btn btn-primary btn-sm nav-cta" href="request.html">Submit a request</a>
+      <button class="menu-btn" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="page-hero">
+      <div class="container narrow">
+        <p class="eyebrow">Submit a request</p>
+        <h1>Tell us what you need paid</h1>
+        <p class="lead">We’ll review it and reply with a quote. Submitting a request doesn’t commit you to paying.</p>
+      </div>
+    </section>
+    <section class="section section-tight">
+      <div class="container narrow">
+        <div class="card wizard" id="wizard">
+          <ol class="wizard-steps" aria-label="Progress">
+            <li class="is-current" data-step-label="1"><span>1</span>Details</li>
+            <li data-step-label="2"><span>2</span>Contact</li>
+            <li data-step-label="3"><span>3</span>Review</li>
+          </ol>
+
+          <form id="request-form" novalidate>
+            <fieldset class="wizard-panel" data-step="1">
+              <legend class="sr-only">Request details</legend>
+              <div class="field">
+                <label for="r-service">Service</label>
+                <select id="r-service" name="service">
+                  <option value="">Choose a service</option>
+                  <option value="spotify">Spotify Premium</option><option value="apple-music">Apple Music</option><option value="chatgpt">ChatGPT</option><option value="claude">Claude & Claude Code</option><option value="cursor">Cursor</option><option value="google">Google</option><option value="steam">Steam gift cards</option><option value="gift-cards">Other gift cards</option><option value="in-game">In-game purchases</option>
+                  <option value="other">Something else</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="r-type">What are you sending?</label>
+                <div class="seg" role="radiogroup" id="r-type">
+                  <label><input type="radio" name="type" value="Payment link" checked><span>Payment link</span></label>
+                  <label><input type="radio" name="type" value="Invoice"><span>Invoice</span></label>
+                  <label><input type="radio" name="type" value="Purchase link"><span>Purchase link</span></label>
+                </div>
+              </div>
+              <div class="field">
+                <label for="r-link">Link</label>
+                <input id="r-link" name="link" type="url" placeholder="https://" required>
+                <p class="field-error" data-error-for="r-link">Enter a link starting with https://</p>
+              </div>
+              <div class="field">
+                <label for="r-details">What should we pay for?</label>
+                <textarea id="r-details" name="details" rows="4" placeholder="e.g. Spotify Premium Individual, 1 month" required></textarea>
+                <p class="hint">Include the plan, amount, region, or anything else we need to know.</p>
+                <p class="field-error" data-error-for="r-details">Tell us what you want paid.</p>
+              </div>
+            </fieldset>
+
+            <fieldset class="wizard-panel" data-step="2" hidden>
+              <legend class="sr-only">Contact</legend>
+              <div class="field">
+                <label for="r-method">How should we contact you?</label>
+                <select id="r-method" name="method">
+                  <option>Email</option>
+                  <option>Telegram</option>
+                  <option>WhatsApp</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="r-contact" id="r-contact-label">Email address</label>
+                <input id="r-contact" name="contact" type="text" placeholder="you@example.com" required>
+                <p class="field-error" data-error-for="r-contact">Enter how we can reach you.</p>
+              </div>
+              <div class="field">
+                <label for="r-name">Your name <span class="optional">(optional)</span></label>
+                <input id="r-name" name="name" type="text">
+              </div>
+            </fieldset>
+
+            <fieldset class="wizard-panel" data-step="3" hidden>
+              <legend class="sr-only">Review</legend>
+              <dl class="summary" id="summary"></dl>
+              <label class="check">
+                <input type="checkbox" id="r-agree" required>
+                <span>I understand that Paychi will review this request first, that I only pay if I accept the quote, and that availability depends on location, service, and applicable requirements.</span>
+              </label>
+              <p class="field-error" data-error-for="r-agree">Please confirm to continue.</p>
+            </fieldset>
+
+            <div class="wizard-nav">
+              <button type="button" class="btn btn-secondary" id="w-back" hidden>Back</button>
+              <button type="button" class="btn btn-primary" id="w-next">Continue</button>
+              <button type="submit" class="btn btn-primary" id="w-submit" hidden>Send request for review</button>
+            </div>
+          </form>
+
+          <div class="wizard-done" id="w-done" hidden>
+            <span class="icon-tile lg"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <h2>Request received</h2>
+            <p>Your reference is <strong class="ref" id="w-ref"></strong>. Keep it to check on your request.</p>
+            <ol class="next-list">
+              <li>Our team reviews your request.</li>
+              <li>We contact you if we have questions.</li>
+              <li>We send you a quote. You decide whether to go ahead.</li>
+            </ol>
+            <div class="cta-actions">
+              <a class="btn btn-primary" id="w-track" href="track.html">Track this request</a>
+              <a class="btn btn-secondary" href="request.html" data-reset>Submit another</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html" aria-label="Paychi home"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#2563EB"/><path d="M11 23V9h6.2a4.6 4.6 0 0 1 0 9.2H11" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Paychi</span></a>
+        <p>We review payment links, invoices, and purchase links and pay them on your behalf.</p>
+        <a class="btn btn-primary btn-sm" href="request.html">Submit a request</a>
+      </div>
+      <nav class="footer-col" aria-label="Services">
+        <h2>Services</h2>
+        <a href="services/spotify.html">Spotify Premium</a><a href="services/apple-music.html">Apple Music</a><a href="services/chatgpt.html">ChatGPT</a><a href="services/claude.html">Claude & Claude Code</a><a href="services/cursor.html">Cursor</a><a href="services/google.html">Google</a><a href="services/steam.html">Steam gift cards</a><a href="services/gift-cards.html">Other gift cards</a><a href="services/in-game.html">In-game purchases</a>
+      </nav>
+      <nav class="footer-col" aria-label="Paychi">
+        <h2>Paychi</h2>
+        <a href="how-it-works.html">How it works</a>
+        <a href="faq.html">FAQ</a>
+        <a href="track.html">Track a request</a>
+        <a href="request.html">Submit a request</a>
+      </nav>
+    </div>
+    <div class="container footer-legal">
+      <p>Availability depends on your location, the service, and applicable requirements. Service names are trademarks of their respective owners. Paychi is not affiliated with or endorsed by them.</p>
+      <p>© <span data-year></span> Paychi</p>
+    </div>
+  </footer>
+  <script>window.PAYCHI = { demo: true, services: [{"slug":"spotify","name":"Spotify Premium"},{"slug":"apple-music","name":"Apple Music"},{"slug":"chatgpt","name":"ChatGPT"},{"slug":"claude","name":"Claude & Claude Code"},{"slug":"cursor","name":"Cursor"},{"slug":"google","name":"Google"},{"slug":"steam","name":"Steam gift cards"},{"slug":"gift-cards","name":"Other gift cards"},{"slug":"in-game","name":"In-game purchases"}] };</script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
